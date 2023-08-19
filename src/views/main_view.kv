@@ -1,8 +1,11 @@
-<MainView>:
-	MDGridLayout:
-		cols: 1
-		height: self.minimum_height
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
 
-		MDLabel:
-			text: "Hello, world!"
-			halign: "center"
+<MainView>:
+	MDBoxLayout:
+	    orientation: 'vertical'
+    
+	    ZBarCam:
+	        id: zbarcam
+	        code_types: ZBarSymbol.QRCODE.value, ZBarSymbol.EAN13.value
+	        on_symbols: root.on_symbols(*args)
